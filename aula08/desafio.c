@@ -65,7 +65,7 @@ int main() {
 
     media_comercial = total_comercial / qtd_comercial;
 
-    printf("\n--- RESULTADO FINAL ---\n");
+    printf("\nRESULTADO FINAL\n");
 
     for (int j = 0; j < i; j++) {
         printf("Consumidor %d - Tipo %d - Custo: R$ %.2f\n",
