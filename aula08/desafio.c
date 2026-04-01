@@ -15,46 +15,69 @@
 #include <stdio.h>
 
 int main() {
-    int numeroconsumidor = -1, op, i = 0, j = 0;
-    float kwh, custo_consumidor;
-    float total_residencial = 0, total_comercial = 0, total_industiral = 0;
+    int numero[100], tipo[100], i = 0;
+    float kwh[100], custo[100];
+    int op;
+    int qtd_residencial = 0, qtd_comercial = 0;
+
+    float total_residencial = 0, total_comercial = 0, total_industrial = 0;
     float media_residencial = 0, media_comercial = 0;
 
-    while (numeroconsumidor != 0) {
+    while (1) {
         printf("Digite o numero do consumidor (0 para finalizar): ");
-        scanf("%d", &numeroconsumidor);
+        scanf("%d", &numero[i]);
 
-        printf("Digite a quantidade de kWh consumidos no mes: ");
-        scanf("%f", &kwh);
+        if (numero[i] == 0) {
+            break;
+        }
 
-        printf("Escolha uma opcao:\n1-Residencial\n2-Comercial\n3-Industrial\n");
+        printf("Digite o kWh: ");
+        scanf("%f", &kwh[i]);
+
+        printf("1-Residencial\n2-Comercial\n3-Industrial\n");
         scanf("%d", &op);
 
+        tipo[i] = op;
+
         if (op == 1) {
-            custo_consumidor = kwh * 0.3;
-            printf("O custo desse consumidor foi: %.2f\n", custo_consumidor);
-            total_residencial += kwh;
-            i++;
-        } else if (op == 2) {
-            custo_consumidor = kwh * 0.5;
-            printf("O custo desse consumidor foi: %.2f\n", custo_consumidor);
-            total_comercial += kwh;
-            j++;
-        } else if (op == 3) {
-            custo_consumidor = kwh * 0.7;
-            printf("O custo desse consumidor foi: %.2f\n", custo_consumidor);
-            total_industiral += kwh;
-        } else {
-            printf("Tipo invalido.\n");
+            custo[i] = kwh[i] * 0.3;
+            total_residencial += kwh[i];
+            qtd_residencial++;
+        } 
+        else if (op == 2) {
+            custo[i] = kwh[i] * 0.5;
+            total_comercial += kwh[i];
+            qtd_comercial++;
+        } 
+        else if (op == 3) {
+            custo[i] = kwh[i] * 0.7;
+            total_industrial += kwh[i];
+        } 
+        else {
+            printf("Tipo invalido!\n");
+            continue;
         }
+
+        i++;
     }
 
-    printf("\nTotal de consumo residencial: %f kWh\n", total_residencial);
-    printf("Total de consumo comercial: %f kWh\n", total_comercial);
-    printf("Total de consumo industrial: %f kWh\n", total_industiral);
+    media_residencial = total_residencial / qtd_residencial;
 
-    printf("Media de consumo residencial: %f kWh\n", media_residencial);
-    printf("Media de consumo comercial: %f kWh\n", media_comercial);
+    media_comercial = total_comercial / qtd_comercial;
+
+    printf("\n--- RESULTADO FINAL ---\n");
+
+    for (int j = 0; j < i; j++) {
+        printf("Consumidor %d - Tipo %d - Custo: R$ %.2f\n",
+               numero[j], tipo[j], custo[j]);
+    }
+
+    printf("\nTotal residencial: %f kWh\n", total_residencial);
+    printf("Total comercial: %f kWh\n", total_comercial);
+    printf("Total industrial: %f kWh\n", total_industrial);
+
+    printf("Media de consumo do tipo 1 (residencial): %f kWh\n", media_residencial);
+    printf("Media de consumo do tipo 2 (comercial): %f kWh\n", media_comercial);
 
     return 0;
 }
