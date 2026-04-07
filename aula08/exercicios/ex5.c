@@ -15,14 +15,15 @@ int main(){
         if (n==1)
         {
             break;
-        }else if (n%2==0)
+        }
+        
+        if (n%2==0)
         {
             n = n/2;
-            printf("Agora o numero vale %d\n", n);
-        }else if(n%2==1){
+        }else{
             n = 3*n+1;
-            printf("Agora o numero vale %d\n", n);
         }
+        printf("Agora o numero vale %d\n", n);
         
         
     }
