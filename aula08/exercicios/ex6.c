@@ -12,6 +12,4 @@ int main() {
         c = (5.0 / 9) * (f - 32);
         printf("F: %d -> C: %f\n", f, c);
     }
-
-    return 0;
 }
